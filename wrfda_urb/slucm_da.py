@@ -42,7 +42,7 @@ class slucm:
     self.RAIN = numpy.zeros(numpy.shape(self.LLG))  # TODO: fix
     self.RHOO = 1.25 * numpy.ones(numpy.shape(self.LLG))
     self.RHO = self.RHOO * 0.001
-    self.ZA = (ncfile.variables['PH'][0,0,:] + ncfile.variables['PHB'][0,0,:])/9.81
+    self.ZA = (ncfile.variables['PH'][0,1,:] + ncfile.variables['PHB'][0,1,:])/9.81
     #self.COSZ = ncfile.variables['COSZEN'][0,:]
     self.DELT = 60
     self.ZR = ncfile.variables['MH_URB2D'][0,:]
@@ -58,9 +58,10 @@ class slucm:
     self.DZB = [5.,5.,5.,5.]
     self.DZG = [5.,20.,25.,25.]
     self.ANTHEAT = 0.
-    self.TRL = [293.00, 293.00, 293.00, 293.00]
-    self.TBL = [293.00, 293.00, 293.00, 293.00]
-    self.TGL = [293.00, 293.00, 293.00, 293.00]
+    # fix to real values from wrfinput
+    self.TRL = [self.TRP[50,50],self.TRP[50,50]-1,self.TRP[50,50]-5,self.TRP[50,50]-20] #[293.00, 293.00, 293.00, 293.00]
+    self.TBL = [self.TBP[50,50],self.TBP[50,50]-1,self.TBP[50,50]-5,self.TBP[50,50]-20]#[293.00, 293.00, 293.00, 293.00]
+    self.TGL = [self.TGP[50,50],self.TGP[50,50]-1,self.TGP[50,50]-5,self.TGP[50,50]-20]#[293.00, 293.00, 293.00, 293.00]
     #self.CMR_URB = ncfile.variables['CMR_SFCDIF']
     #self.CHR_URB = ncfile.variables['CHR_SFCDIF']
     #self.CMC_URB = ncfile.variables['CMC_SFCDIF']
