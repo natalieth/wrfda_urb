@@ -30,8 +30,8 @@ class slucm:
     self.QA = ncfile.variables['QVAPOR'][0,0,:]
     self.UA = numpy.sqrt((ncfile.variables['U'][0,0,:,:-1]**2) +
                          (ncfile.variables['V'][0,0,:-1,:]**2))
-    self.SSG = ncfile2.variables['SWDOWN'][0,]
-    self.LLG = ncfile2.variables['GLW'][0,:]
+    self.SSG = ncfile2.variables['SWDOWN'][1,:]
+    self.LLG = ncfile2.variables['GLW'][1,:]
     self.TRP = ncfile.variables['TR_URB'][0,:]
     self.TGP = ncfile.variables['TG_URB'][0,:]
     self.TCP = ncfile.variables['TC_URB'][0,:]
@@ -73,7 +73,7 @@ class slucm:
     self.XXXB = numpy.zeros(numpy.shape(self.ZR))  # update registry
     self.XXXG = numpy.zeros(numpy.shape(self.ZR)) # update registry
     self.TC2Min = ncfile2.variables['TC2M_URB'][1,:]
-
+    self.Hin = ncfile2.variables['SH_URB'][1,:]
     ncfile.close()
 
 
@@ -563,4 +563,4 @@ class slucm:
 
     RAH = 1./(self.AK*numpy.sqrt(self.CDC*self.UA*self.UA))*(numpy.log(self.ZA/2.)-PSIHZA+PSIH2M)
     self.TC2M = self.TA + RAH*(self.W/self.RW*FLXTHB+FLXTHG)
-
+    
